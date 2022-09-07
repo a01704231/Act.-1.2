@@ -25,12 +25,17 @@
 // =================================================================
 template <class T>
 int sequentialSearch(const std::vector<T> &v, T key) {
+	int index = -1;
+	int comparaciones = 0;
 	for (int i = 0; i < v.size(); i++) {
+        comparaciones += 1;
 		if (v[i] == key) {
-			return i;
+			index = i;
+			break;
 		}
 	}
-	return -1;
+	cout << index << " ";
+	return comparaciones;
 }
 
 // =================================================================
@@ -43,21 +48,24 @@ int sequentialSearch(const std::vector<T> &v, T key) {
 // =================================================================
 template <class T>
 int binarySearch(const std::vector<T> &v, T key) {
+    int index = -1;
 	int low, high, mid;
-
+    int comparaciones = 0;
 	low = 0;
 	high = v.size() - 1;
 	while (low <= high) {
 		mid = low + ((high - low) / 2); // mid = (high + low) / 2;
+		comparaciones += 1;
 		if (key == v[mid]) {
-			return mid;
+            index = mid;
+			break;
 		} else if (key < v[mid]) {
 			high = mid - 1;
 		} else {
 			low = mid + 1;
 		}
 	}
-	return -1;
+	return comparaciones;
 }
 
 // =================================================================
